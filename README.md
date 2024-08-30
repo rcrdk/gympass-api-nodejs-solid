@@ -1,6 +1,12 @@
 # 🏋🏼 GymPass Style App
 I developed this project during my latest studies on Node lessons at [Rocketseat](https://www.rocketseat.com.br).
 
+## 🚀 Techs and Tools
+<!-- - List project techs and tools -->
+
+## 🖥️ Project
+<!-- - Write about the project -->
+
 ## ⚙️ Get started
 ```shell
 npm i
@@ -11,9 +17,15 @@ docker compose up -d
 npx prisma migrate dev
 ```
 
----
+## 🔗 Routes
+<!-- - Export and commit insomnia JSON, then, test it -->
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Ignite%20Node.js%3A%20GymPass%20API%0A&uri=https://raw.githubusercontent.com/rcrdk/gympass-api-nodejs-solid/main/insomnia.json)
 
-## Functional Requirements
+<!-- - List table of routes? -->
+
+## 📋 Business Rules and Requirements
+
+### Functional Requirements
 
 - [ ] It should be able to create an account;
 - [ ] It should be able to authenticate;
@@ -26,7 +38,7 @@ npx prisma migrate dev
 - [ ] It should be able to validate a user check-in;
 - [ ] It should be able to create a new gym;
 
-## Business Rules
+### Business Rules
 
 - [ ] The user cannot create a new account with a duplicated e-mail;
 - [ ] The user cannot make more than one check-in on the same day;
@@ -35,7 +47,7 @@ npx prisma migrate dev
 - [ ] The check-in can only be validated by administrators;
 - [ ] The gym can only be created by administrators;
 
-## Non Functional Requirements
+### Non Functional Requirements
 
 - [ ] The user password must be encypted;
 - [ ] All application data must be persisted on a postgreSQL database;
