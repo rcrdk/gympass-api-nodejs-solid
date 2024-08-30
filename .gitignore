@@ -1,0 +1,6 @@
+# Application folders
+node_modules
+build
+
+# Enviroment variables
+.env
