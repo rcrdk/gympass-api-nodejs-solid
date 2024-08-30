@@ -1,6 +1,18 @@
 # 🏋🏼 GymPass Style App
 I developed this project during my latest studies on Node lessons at [Rocketseat](https://www.rocketseat.com.br).
 
+## ⚙️ Get started
+```shell
+npm i
+npm run start:dev
+
+docker compose up -d
+
+npx prisma migrate dev
+```
+
+---
+
 ## Functional Requirements
 
 - [ ] It should be able to create an account;
