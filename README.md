@@ -13,7 +13,7 @@ I developed this project during my latest studies on Node lessons at [Rocketseat
 <!-- - Design Patterns -->
 <!-- - SOLID -->
 <!-- - Repository Pattern -->
-<!-- - Testing -->
+<!-- - Testing: Unit tests, In-Memory Databases -->
 
 ## ⚙️ Get started
 ```shell

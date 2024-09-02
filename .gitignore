@@ -1,6 +1,7 @@
 # Application folders
 node_modules
 build
+coverage
 
 # Enviroment variables
 .env
