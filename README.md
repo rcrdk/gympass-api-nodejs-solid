@@ -1,11 +1,19 @@
-# 🏋🏼 GymPass Style App
+# 🏋🏼 GymPass Style App API
 I developed this project during my latest studies on Node lessons at [Rocketseat](https://www.rocketseat.com.br).
 
 ## 🚀 Techs and Tools
-<!-- - List project techs and tools -->
+- [Node.js v18](https://nodejs.org/)
+- [Fastify](https://fastify.dev)
+- [Prisma](https://www.prisma.io) / [PostgreSQL](https://www.postgresql.org/)  / [Docker](https://www.docker.com/)
+- [Insomnia](https://insomnia.rest/)
+- [Vitest](https://vitest.dev/)
 
 ## 🖥️ Project
 <!-- - Write about the project -->
+<!-- - Design Patterns -->
+<!-- - SOLID -->
+<!-- - Repository Pattern -->
+<!-- - Testing -->
 
 ## ⚙️ Get started
 ```shell
