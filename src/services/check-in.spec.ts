@@ -1,28 +1,29 @@
-import { Decimal } from '@prisma/client/runtime/library'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-check-ins-repository'
 import { InMemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms-repository'
 
 import { CheckinService } from './check-in'
+import { MaxDistanceError } from './errors/max-distance-error'
+import { MaxNumberOfCheckInsError } from './errors/max-number-of-check-ins-error'
 
 let checkInsRepository: InMemoryCheckInsRepository
 let gymsRepository: InMemoryGymsRepository
 let sut: CheckinService
 
 describe('check-in service', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     checkInsRepository = new InMemoryCheckInsRepository()
     gymsRepository = new InMemoryGymsRepository()
     sut = new CheckinService(checkInsRepository, gymsRepository)
 
-    gymsRepository.items.push({
+    await gymsRepository.create({
       id: 'gym-01',
-      title: 'Academia T2',
-      description: '',
-      phone: '',
-      latitude: new Decimal(-26.8098821),
-      longitude: new Decimal(-49.2705003),
+      title: 'John Doe Gym',
+      latitude: -26.8098821,
+      longitude: -49.2705003,
+      description: null,
+      phone: null,
     })
 
     vi.useFakeTimers()
@@ -60,7 +61,7 @@ describe('check-in service', () => {
         userLatitude: -26.8098821,
         userLongitude: -49.2705003,
       })
-    }).rejects.toBeInstanceOf(Error)
+    }).rejects.toBeInstanceOf(MaxNumberOfCheckInsError)
   })
 
   it('should be able to check in twice in different days', async () => {
@@ -86,13 +87,13 @@ describe('check-in service', () => {
   })
 
   it('should not be able to check in on a distant gym', async () => {
-    gymsRepository.items.push({
+    await gymsRepository.create({
       id: 'gym-02',
-      title: 'Academia Cultural',
-      description: '',
-      phone: '',
-      latitude: new Decimal(-26.8214187),
-      longitude: new Decimal(-49.2754213),
+      title: 'John Doe Gym',
+      latitude: -26.8214187,
+      longitude: -49.2754213,
+      description: null,
+      phone: null,
     })
 
     await expect(() => {
@@ -102,6 +103,6 @@ describe('check-in service', () => {
         userLatitude: -26.8098821,
         userLongitude: -49.2705003,
       })
-    }).rejects.toBeInstanceOf(Error)
+    }).rejects.toBeInstanceOf(MaxDistanceError)
   })
 })
