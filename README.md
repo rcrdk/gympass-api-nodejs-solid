@@ -40,13 +40,13 @@ npx prisma migrate dev
 - [x] It should be able to create an account;
 - [x] It should be able to authenticate;
 - [x] It should be able to get the authenticated user profile;
-- [ ] It should be able to get the total check-ins by the authenticated user;
-- [ ] It should be able to get all authenticated user check-ins history;
+- [x] It should be able to get the total check-ins by the authenticated user;
+- [x] It should be able to get all authenticated user check-ins history;
 - [ ] It should be able to find nearby gyms;
-- [ ] It should be able to search for gyms by name;
+- [x] It should be able to search for gyms by name;
 - [x] It should be able to a user to check-in into a gym;
 - [ ] It should be able to validate a user check-in;
-- [ ] It should be able to create a new gym;
+- [x] It should be able to create a new gym;
 
 ### Business Rules
 
@@ -61,5 +61,5 @@ npx prisma migrate dev
 
 - [x] The user password must be encypted;
 - [x] All application data must be persisted on a postgreSQL database;
-- [ ] All data listed should be paginated with 20 itens by page;
+- [x] All data listed should be paginated with 20 itens by page;
 - [ ] The user must be identified by a JWT (JSON Web Token);

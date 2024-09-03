@@ -8,18 +8,14 @@ import { CheckInsRepository } from '../checkins-repository'
 export class InMemoryCheckInsRepository implements CheckInsRepository {
   public items: CheckIn[] = []
 
-  async create(data: Prisma.CheckInUncheckedCreateInput) {
-    const checkIn = {
-      id: randomUUID(),
-      user_id: data.user_id,
-      gym_id: data.gym_id,
-      validated_at: data.validated_at ? new Date(data.validated_at) : null,
-      created_at: new Date(),
-    }
+  async findManyByUserId(userId: string, page: number) {
+    const ITEMS_BY_PAGE = 20
+    const START_USERS_ARRAY_DELIMETER = (page - 1) * ITEMS_BY_PAGE
+    const END_USERS_ARRAY_DELIMETER = page * ITEMS_BY_PAGE
 
-    this.items.push(checkIn)
-
-    return checkIn
+    return this.items
+      .filter((item) => item.user_id === userId)
+      .slice(START_USERS_ARRAY_DELIMETER, END_USERS_ARRAY_DELIMETER)
   }
 
   async findByUserIdOnDate(userId: string, date: Date) {
@@ -39,5 +35,23 @@ export class InMemoryCheckInsRepository implements CheckInsRepository {
     }
 
     return checkInOnSameDate
+  }
+
+  async countByUserId(userId: string) {
+    return this.items.filter((item) => item.user_id === userId).length
+  }
+
+  async create(data: Prisma.CheckInUncheckedCreateInput) {
+    const checkIn = {
+      id: randomUUID(),
+      user_id: data.user_id,
+      gym_id: data.gym_id,
+      validated_at: data.validated_at ? new Date(data.validated_at) : null,
+      created_at: new Date(),
+    }
+
+    this.items.push(checkIn)
+
+    return checkIn
   }
 }

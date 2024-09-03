@@ -17,6 +17,18 @@ export class InMemoryGymsRepository implements GymsRepository {
     return gym
   }
 
+  async searchMany(query: string, page: number) {
+    const ITEMS_BY_PAGE = 20
+    const START_USERS_ARRAY_DELIMETER = (page - 1) * ITEMS_BY_PAGE
+    const END_USERS_ARRAY_DELIMETER = page * ITEMS_BY_PAGE
+
+    return this.items
+      .filter((item) =>
+        item.title.toLocaleLowerCase().includes(query.toLocaleLowerCase()),
+      )
+      .slice(START_USERS_ARRAY_DELIMETER, END_USERS_ARRAY_DELIMETER)
+  }
+
   async create(data: Prisma.GymCreateInput) {
     const gym = {
       id: data.id ?? randomUUID(),
