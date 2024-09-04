@@ -10,15 +10,9 @@ I developed this project during my latest studies on Node lessons at [Rocketseat
 
 ## 🖥️ Project
 <!-- - Write about the project -->
-<!-- - Design Patterns -->
-<!-- - SOLID -->
-<!-- - Repository Pattern -->
-<!-- - Factory Pattern -->
-<!-- - Testing: Unit tests, In-Memory Databases -->
-<!-- - TDD: Test-drive development -->
 
 ## ⚙️ Get started
-```shell
+```zsh
 npm i
 npm run start:dev
 
@@ -31,8 +25,6 @@ npx prisma migrate dev
 <!-- - Export and commit insomnia JSON, then, test it -->
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Ignite%20Node.js%3A%20GymPass%20API%0A&uri=https://raw.githubusercontent.com/rcrdk/gympass-api-nodejs-solid/main/insomnia.json)
 
-<!-- - List table of routes? -->
-
 ## 📋 Business Rules and Requirements
 
 ### Functional Requirements
@@ -42,10 +34,10 @@ npx prisma migrate dev
 - [x] It should be able to get the authenticated user profile;
 - [x] It should be able to get the total check-ins by the authenticated user;
 - [x] It should be able to get all authenticated user check-ins history;
-- [ ] It should be able to find nearby gyms;
+- [x] It should be able to find nearby gyms (around 10 kilometers);
 - [x] It should be able to search for gyms by name;
 - [x] It should be able to a user to check-in into a gym;
-- [ ] It should be able to validate a user check-in;
+- [x] It should be able to validate a user check-in;
 - [x] It should be able to create a new gym;
 
 ### Business Rules
@@ -53,7 +45,7 @@ npx prisma migrate dev
 - [x] The user cannot create a new account with a duplicated e-mail;
 - [x] The user cannot make more than one check-in on the same day;
 - [x] The user cannot check-in if their not nearby the gym (around 100 meters);
-- [ ] The check-in can only be validated till 20 minutes after created;
+- [x] The check-in can only be validated till 20 minutes after created;
 - [ ] The check-in can only be validated by administrators;
 - [ ] The gym can only be created by administrators;
 

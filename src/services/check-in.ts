@@ -8,18 +8,18 @@ import { MaxDistanceError } from './errors/max-distance-error'
 import { MaxNumberOfCheckInsError } from './errors/max-number-of-check-ins-error'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
-interface CheckinServiceRequest {
+interface CheckInServiceRequest {
   userId: string
   gymId: string
   userLatitude: number
   userLongitude: number
 }
 
-interface CheckinServiceResponse {
+interface CheckInServiceResponse {
   checkIn: CheckIn
 }
 
-export class CheckinService {
+export class CheckInService {
   constructor(
     private checkInsRepository: CheckInsRepository,
     private gymsRepository: GymsRepository,
@@ -30,7 +30,7 @@ export class CheckinService {
     gymId,
     userLatitude,
     userLongitude,
-  }: CheckinServiceRequest): Promise<CheckinServiceResponse> {
+  }: CheckInServiceRequest): Promise<CheckInServiceResponse> {
     const gym = await this.gymsRepository.findById(gymId)
 
     if (!gym) {

@@ -3,19 +3,19 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-check-ins-repository'
 import { InMemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms-repository'
 
-import { CheckinService } from './check-in'
+import { CheckInService } from './check-in'
 import { MaxDistanceError } from './errors/max-distance-error'
 import { MaxNumberOfCheckInsError } from './errors/max-number-of-check-ins-error'
 
 let checkInsRepository: InMemoryCheckInsRepository
 let gymsRepository: InMemoryGymsRepository
-let sut: CheckinService
+let sut: CheckInService
 
 describe('check-in service', () => {
   beforeEach(async () => {
     checkInsRepository = new InMemoryCheckInsRepository()
     gymsRepository = new InMemoryGymsRepository()
-    sut = new CheckinService(checkInsRepository, gymsRepository)
+    sut = new CheckInService(checkInsRepository, gymsRepository)
 
     await gymsRepository.create({
       id: 'gym-01',
