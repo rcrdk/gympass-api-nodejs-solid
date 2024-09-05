@@ -29,6 +29,8 @@ I developed this project during my latest studies on Node lessons at [Rocketseat
 <!-- Metodologias de desenvolvimento: -->
 <!-- - TDD: Test-Driven Development -->
 
+<!-- JWT -->
+
 ## ⚙️ Get started
 ```zsh
 npm i
