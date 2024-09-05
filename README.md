@@ -10,6 +10,24 @@ I developed this project during my latest studies on Node lessons at [Rocketseat
 
 ## 🖥️ Project
 <!-- - Write about the project -->
+<!-- - Testing: Unit tests, In-Memory Databases, in this project we ensure that all application works by running all tests over testing with routing -->
+<!-- - Errors threatments -->
+
+<!-- - Clean Architecture -->
+
+<!-- - SOLID: boas prática de código -->
+<!-- - S: Single Responsibility Principle: uma classe deve ter uma e apenas uma razão para mudar. -->
+<!-- - O: Open-Closed Principle: objetos devem estar disponíveis para extensão, mas fechados para modificação. -->
+<!-- - L: Liskov Substitution Principle: uma subclasse deve ser substituível por sua superclasse. -->
+<!-- - I: Interface Segregation Principle): uma classe não deve ser obrigada a implementar métodos e interfaces que não serão utilizadas. -->
+<!-- - D: Dependency Inversion Principle: dependa de abstrações e não de implementações. -->
+
+<!-- Design Patterns: -->
+<!-- - Repository Pattern: S,I e D do SOLID -->
+<!-- - Factory Pattern: É o padrão de design mais usado no mundo OOP porque economiza muito tempo no futuro quando você precisa modificar uma das classes que você usou. -->
+
+<!-- Metodologias de desenvolvimento: -->
+<!-- - TDD: Test-Driven Development -->
 
 ## ⚙️ Get started
 ```zsh

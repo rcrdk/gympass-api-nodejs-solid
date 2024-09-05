@@ -4,7 +4,7 @@ import { AuthenticateService } from '../authenticate'
 
 export function makeAuthenticateService() {
   const usersRepository = new PrismaUsersRepository()
-  const authenticateService = new AuthenticateService(usersRepository)
+  const service = new AuthenticateService(usersRepository)
 
-  return authenticateService
+  return service
 }
