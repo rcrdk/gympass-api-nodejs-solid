@@ -6,9 +6,9 @@ import { register } from './controllers/register'
 import { verifyJWT } from './middlewares/verify-jwt'
 
 export async function appRoutes(app: FastifyInstance) {
-  app.post('/users', register)
-  app.post('/sessions', authenticate)
+	app.post('/users', register)
+	app.post('/sessions', authenticate)
 
-  // authenticated only:
-  app.get('/me', { onRequest: [verifyJWT] }, profile)
+	// authenticated only:
+	app.get('/me', { onRequest: [verifyJWT] }, profile)
 }

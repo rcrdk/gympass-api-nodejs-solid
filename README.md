@@ -10,7 +10,7 @@ I developed this project during my latest studies on Node lessons at [Rocketseat
 
 ## 🖥️ Project
 <!-- - Write about the project -->
-<!-- - Testing: Unit tests, In-Memory Databases, in this project we ensure that all application works by running all tests over testing with routing -->
+<!-- - Testing: E2E, Unit tests, In-Memory Databases, in this project we ensure that all application works by running all tests over testing with routing -->
 <!-- - Errors threatments -->
 
 <!-- - Clean Architecture -->

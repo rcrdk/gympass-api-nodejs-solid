@@ -6,72 +6,72 @@ import { prisma } from '@/lib/prisma'
 import { CheckInsRepository } from '../checkins-repository'
 
 export class PrismaCheckInsRepository implements CheckInsRepository {
-  async findManyByUserId(userId: string, page: number) {
-    const ITEMS_BY_PAGE = 20
-    const SKIP_PREV_PAGES_ITEMS = (page - 1) * ITEMS_BY_PAGE
+	async findManyByUserId(userId: string, page: number) {
+		const ITEMS_BY_PAGE = 20
+		const SKIP_PREV_PAGES_ITEMS = (page - 1) * ITEMS_BY_PAGE
 
-    const checkIns = await prisma.checkIn.findMany({
-      where: {
-        user_id: userId,
-      },
-      take: ITEMS_BY_PAGE,
-      skip: SKIP_PREV_PAGES_ITEMS,
-    })
+		const checkIns = await prisma.checkIn.findMany({
+			where: {
+				user_id: userId,
+			},
+			take: ITEMS_BY_PAGE,
+			skip: SKIP_PREV_PAGES_ITEMS,
+		})
 
-    return checkIns
-  }
+		return checkIns
+	}
 
-  async findByUserIdOnDate(userId: string, date: Date) {
-    const startOfTheDay = dayjs(date).startOf('date')
-    const endOfTheDay = dayjs(date).endOf('date')
+	async findByUserIdOnDate(userId: string, date: Date) {
+		const startOfTheDay = dayjs(date).startOf('date')
+		const endOfTheDay = dayjs(date).endOf('date')
 
-    const checkIn = await prisma.checkIn.findFirst({
-      where: {
-        user_id: userId,
-        created_at: {
-          gte: startOfTheDay.toDate(),
-          lte: endOfTheDay.toDate(),
-        },
-      },
-    })
+		const checkIn = await prisma.checkIn.findFirst({
+			where: {
+				user_id: userId,
+				created_at: {
+					gte: startOfTheDay.toDate(),
+					lte: endOfTheDay.toDate(),
+				},
+			},
+		})
 
-    return checkIn
-  }
+		return checkIn
+	}
 
-  async findById(id: string) {
-    const checkIn = await prisma.checkIn.findUnique({
-      where: { id },
-    })
+	async findById(id: string) {
+		const checkIn = await prisma.checkIn.findUnique({
+			where: { id },
+		})
 
-    return checkIn
-  }
+		return checkIn
+	}
 
-  async countByUserId(userId: string) {
-    const count = await prisma.checkIn.count({
-      where: {
-        user_id: userId,
-      },
-    })
+	async countByUserId(userId: string) {
+		const count = await prisma.checkIn.count({
+			where: {
+				user_id: userId,
+			},
+		})
 
-    return count
-  }
+		return count
+	}
 
-  async create(data: Prisma.CheckInUncheckedCreateInput) {
-    const checkIn = await prisma.checkIn.create({
-      data,
-    })
+	async create(data: Prisma.CheckInUncheckedCreateInput) {
+		const checkIn = await prisma.checkIn.create({
+			data,
+		})
 
-    return checkIn
-  }
+		return checkIn
+	}
 
-  async save(data: CheckIn) {
-    const checkIn = await prisma.checkIn.update({
-      where: {
-        id: data.id,
-      },
-      data,
-    })
+	async save(data: CheckIn) {
+		const checkIn = await prisma.checkIn.update({
+			where: {
+				id: data.id,
+			},
+			data,
+		})
 
-    return checkIn
-  }
+		return checkIn
+	}
 }

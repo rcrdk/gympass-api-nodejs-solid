@@ -9,67 +9,67 @@ import { MaxNumberOfCheckInsError } from './errors/max-number-of-check-ins-error
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 interface CheckInServiceRequest {
-  userId: string
-  gymId: string
-  userLatitude: number
-  userLongitude: number
+	userId: string
+	gymId: string
+	userLatitude: number
+	userLongitude: number
 }
 
 interface CheckInServiceResponse {
-  checkIn: CheckIn
+	checkIn: CheckIn
 }
 
 export class CheckInService {
-  constructor(
-    private checkInsRepository: CheckInsRepository,
-    private gymsRepository: GymsRepository,
-  ) {}
+	constructor(
+		private checkInsRepository: CheckInsRepository,
+		private gymsRepository: GymsRepository,
+	) {}
 
-  async handle({
-    userId,
-    gymId,
-    userLatitude,
-    userLongitude,
-  }: CheckInServiceRequest): Promise<CheckInServiceResponse> {
-    const gym = await this.gymsRepository.findById(gymId)
+	async handle({
+		userId,
+		gymId,
+		userLatitude,
+		userLongitude,
+	}: CheckInServiceRequest): Promise<CheckInServiceResponse> {
+		const gym = await this.gymsRepository.findById(gymId)
 
-    if (!gym) {
-      throw new ResourceNotFoundError()
-    }
+		if (!gym) {
+			throw new ResourceNotFoundError()
+		}
 
-    const distance = getDistanceBetweenCoordinates(
-      {
-        latitude: userLatitude,
-        longitude: userLongitude,
-      },
-      {
-        latitude: Number(gym.latitude),
-        longitude: Number(gym.longitude),
-      },
-    )
+		const distance = getDistanceBetweenCoordinates(
+			{
+				latitude: userLatitude,
+				longitude: userLongitude,
+			},
+			{
+				latitude: Number(gym.latitude),
+				longitude: Number(gym.longitude),
+			},
+		)
 
-    const MAX_DISTANCE_IN_KILOMETERS = 0.1
+		const MAX_DISTANCE_IN_KILOMETERS = 0.1
 
-    if (distance > MAX_DISTANCE_IN_KILOMETERS) {
-      throw new MaxDistanceError()
-    }
+		if (distance > MAX_DISTANCE_IN_KILOMETERS) {
+			throw new MaxDistanceError()
+		}
 
-    const checkInOnSameDay = await this.checkInsRepository.findByUserIdOnDate(
-      userId,
-      new Date(),
-    )
+		const checkInOnSameDay = await this.checkInsRepository.findByUserIdOnDate(
+			userId,
+			new Date(),
+		)
 
-    if (checkInOnSameDay) {
-      throw new MaxNumberOfCheckInsError()
-    }
+		if (checkInOnSameDay) {
+			throw new MaxNumberOfCheckInsError()
+		}
 
-    const checkIn = await this.checkInsRepository.create({
-      gym_id: gymId,
-      user_id: userId,
-    })
+		const checkIn = await this.checkInsRepository.create({
+			gym_id: gymId,
+			user_id: userId,
+		})
 
-    return {
-      checkIn,
-    }
-  }
+		return {
+			checkIn,
+		}
+	}
 }

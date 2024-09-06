@@ -3,14 +3,14 @@ import { FastifyReply, FastifyRequest } from 'fastify'
 import { makeGetUserProfileService } from '@/services/factories/make-get-user-profile-service'
 
 export async function profile(request: FastifyRequest, reply: FastifyReply) {
-  const getUserProfile = makeGetUserProfileService()
+	const getUserProfile = makeGetUserProfileService()
 
-  const { user } = await getUserProfile.handle({ userId: request.user.sub })
+	const { user } = await getUserProfile.handle({ userId: request.user.sub })
 
-  return reply.status(200).send({
-    user: {
-      ...user,
-      password_hash: undefined,
-    },
-  })
+	return reply.status(200).send({
+		user: {
+			...user,
+			password_hash: undefined,
+		},
+	})
 }

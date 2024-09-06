@@ -10,51 +10,51 @@ let usersRepository: InMemoryUsersRepository
 let sut: RegisterService
 
 describe('register service', () => {
-  beforeEach(() => {
-    usersRepository = new InMemoryUsersRepository()
-    sut = new RegisterService(usersRepository)
-  })
+	beforeEach(() => {
+		usersRepository = new InMemoryUsersRepository()
+		sut = new RegisterService(usersRepository)
+	})
 
-  it('should be able to register', async () => {
-    const { user } = await sut.handle({
-      name: 'John Doe',
-      email: 'john@doe.com',
-      password: '123456',
-    })
+	it('should be able to register', async () => {
+		const { user } = await sut.handle({
+			name: 'John Doe',
+			email: 'john@doe.com',
+			password: '123456',
+		})
 
-    expect(user.id).toEqual(expect.any(String))
-  })
+		expect(user.id).toEqual(expect.any(String))
+	})
 
-  it('should hash user password upon registration', async () => {
-    const { user } = await sut.handle({
-      name: 'John Doe',
-      email: 'john@doe.com',
-      password: '123456',
-    })
+	it('should hash user password upon registration', async () => {
+		const { user } = await sut.handle({
+			name: 'John Doe',
+			email: 'john@doe.com',
+			password: '123456',
+		})
 
-    const isPasswordCorrectlyHashed = await compare(
-      '123456',
-      user.password_hash,
-    )
+		const isPasswordCorrectlyHashed = await compare(
+			'123456',
+			user.password_hash,
+		)
 
-    expect(isPasswordCorrectlyHashed).toBeTruthy()
-  })
+		expect(isPasswordCorrectlyHashed).toBeTruthy()
+	})
 
-  it('should not be able to register with same e-mail twice', async () => {
-    const email = 'john@doe.com'
+	it('should not be able to register with same e-mail twice', async () => {
+		const email = 'john@doe.com'
 
-    await sut.handle({
-      name: 'John Doe',
-      email,
-      password: '123456',
-    })
+		await sut.handle({
+			name: 'John Doe',
+			email,
+			password: '123456',
+		})
 
-    await expect(() => {
-      return sut.handle({
-        name: 'John Doe',
-        email,
-        password: '123456',
-      })
-    }).rejects.toBeInstanceOf(UserAlreadyExistsError)
-  })
+		await expect(() => {
+			return sut.handle({
+				name: 'John Doe',
+				email,
+				password: '123456',
+			})
+		}).rejects.toBeInstanceOf(UserAlreadyExistsError)
+	})
 })

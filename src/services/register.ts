@@ -6,37 +6,37 @@ import { UsersRepository } from '@/repositories/users-repository'
 import { UserAlreadyExistsError } from './errors/user-already-exists-error'
 
 interface RegisterServiceRequest {
-  name: string
-  email: string
-  password: string
+	name: string
+	email: string
+	password: string
 }
 
 interface RegisterServiceResponse {
-  user: User
+	user: User
 }
 
 export class RegisterService {
-  constructor(private usersRepository: UsersRepository) {}
+	constructor(private usersRepository: UsersRepository) {}
 
-  async handle({
-    name,
-    email,
-    password,
-  }: RegisterServiceRequest): Promise<RegisterServiceResponse> {
-    const password_hash = await hash(password, 6)
+	async handle({
+		name,
+		email,
+		password,
+	}: RegisterServiceRequest): Promise<RegisterServiceResponse> {
+		const password_hash = await hash(password, 6)
 
-    const userWithSameEmail = await this.usersRepository.findByEmail(email)
+		const userWithSameEmail = await this.usersRepository.findByEmail(email)
 
-    if (userWithSameEmail) {
-      throw new UserAlreadyExistsError()
-    }
+		if (userWithSameEmail) {
+			throw new UserAlreadyExistsError()
+		}
 
-    const user = await this.usersRepository.create({
-      name,
-      email,
-      password_hash,
-    })
+		const user = await this.usersRepository.create({
+			name,
+			email,
+			password_hash,
+		})
 
-    return { user }
-  }
+		return { user }
+	}
 }

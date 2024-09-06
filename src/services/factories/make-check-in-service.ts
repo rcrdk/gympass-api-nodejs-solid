@@ -4,10 +4,10 @@ import { PrismaGymsRepository } from '@/repositories/prisma/prisma-gyms-reposito
 import { CheckInService } from '../check-in'
 
 export function makeCheckInService() {
-  const checkInsRepository = new PrismaCheckInsRepository()
-  const gymsRepository = new PrismaGymsRepository()
+	const checkInsRepository = new PrismaCheckInsRepository()
+	const gymsRepository = new PrismaGymsRepository()
 
-  const service = new CheckInService(checkInsRepository, gymsRepository)
+	const service = new CheckInService(checkInsRepository, gymsRepository)
 
-  return service
+	return service
 }

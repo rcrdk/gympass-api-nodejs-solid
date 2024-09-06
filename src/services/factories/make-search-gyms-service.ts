@@ -3,8 +3,8 @@ import { PrismaGymsRepository } from '@/repositories/prisma/prisma-gyms-reposito
 import { SearchGymService } from '../search-gyms'
 
 export function makeSearchGymsService() {
-  const gymsRepository = new PrismaGymsRepository()
-  const service = new SearchGymService(gymsRepository)
+	const gymsRepository = new PrismaGymsRepository()
+	const service = new SearchGymService(gymsRepository)
 
-  return service
+	return service
 }

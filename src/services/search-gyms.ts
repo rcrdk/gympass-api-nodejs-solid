@@ -3,23 +3,23 @@ import { Gym } from '@prisma/client'
 import { GymsRepository } from '@/repositories/gyms-repository'
 
 interface SearchGymServiceRequest {
-  query: string
-  page: number
+	query: string
+	page: number
 }
 
 interface SearchGymServiceResponse {
-  gyms: Gym[]
+	gyms: Gym[]
 }
 
 export class SearchGymService {
-  constructor(private gymsRepository: GymsRepository) {}
+	constructor(private gymsRepository: GymsRepository) {}
 
-  async handle({
-    query,
-    page,
-  }: SearchGymServiceRequest): Promise<SearchGymServiceResponse> {
-    const gyms = await this.gymsRepository.searchMany(query, page)
+	async handle({
+		query,
+		page,
+	}: SearchGymServiceRequest): Promise<SearchGymServiceResponse> {
+		const gyms = await this.gymsRepository.searchMany(query, page)
 
-    return { gyms }
-  }
+		return { gyms }
+	}
 }

@@ -12,97 +12,97 @@ let gymsRepository: InMemoryGymsRepository
 let sut: CheckInService
 
 describe('check-in service', () => {
-  beforeEach(async () => {
-    checkInsRepository = new InMemoryCheckInsRepository()
-    gymsRepository = new InMemoryGymsRepository()
-    sut = new CheckInService(checkInsRepository, gymsRepository)
+	beforeEach(async () => {
+		checkInsRepository = new InMemoryCheckInsRepository()
+		gymsRepository = new InMemoryGymsRepository()
+		sut = new CheckInService(checkInsRepository, gymsRepository)
 
-    await gymsRepository.create({
-      id: 'gym-01',
-      title: 'John Doe Gym',
-      latitude: -26.8098821,
-      longitude: -49.2705003,
-      description: null,
-      phone: null,
-    })
+		await gymsRepository.create({
+			id: 'gym-01',
+			title: 'John Doe Gym',
+			latitude: -26.8098821,
+			longitude: -49.2705003,
+			description: null,
+			phone: null,
+		})
 
-    vi.useFakeTimers()
-  })
+		vi.useFakeTimers()
+	})
 
-  afterEach(() => {
-    vi.useRealTimers()
-  })
+	afterEach(() => {
+		vi.useRealTimers()
+	})
 
-  it('should be able to check in', async () => {
-    const { checkIn } = await sut.handle({
-      gymId: 'gym-01',
-      userId: 'user-01',
-      userLatitude: -26.8098821,
-      userLongitude: -49.2705003,
-    })
+	it('should be able to check in', async () => {
+		const { checkIn } = await sut.handle({
+			gymId: 'gym-01',
+			userId: 'user-01',
+			userLatitude: -26.8098821,
+			userLongitude: -49.2705003,
+		})
 
-    expect(checkIn.id).toEqual(expect.any(String))
-  })
+		expect(checkIn.id).toEqual(expect.any(String))
+	})
 
-  it('should not be able to check in twice in the same day', async () => {
-    vi.setSystemTime(new Date(2024, 0, 20, 8, 0, 0))
+	it('should not be able to check in twice in the same day', async () => {
+		vi.setSystemTime(new Date(2024, 0, 20, 8, 0, 0))
 
-    await sut.handle({
-      gymId: 'gym-01',
-      userId: 'user-01',
-      userLatitude: -26.8098821,
-      userLongitude: -49.2705003,
-    })
+		await sut.handle({
+			gymId: 'gym-01',
+			userId: 'user-01',
+			userLatitude: -26.8098821,
+			userLongitude: -49.2705003,
+		})
 
-    await expect(() => {
-      return sut.handle({
-        gymId: 'gym-01',
-        userId: 'user-01',
-        userLatitude: -26.8098821,
-        userLongitude: -49.2705003,
-      })
-    }).rejects.toBeInstanceOf(MaxNumberOfCheckInsError)
-  })
+		await expect(() => {
+			return sut.handle({
+				gymId: 'gym-01',
+				userId: 'user-01',
+				userLatitude: -26.8098821,
+				userLongitude: -49.2705003,
+			})
+		}).rejects.toBeInstanceOf(MaxNumberOfCheckInsError)
+	})
 
-  it('should be able to check in twice in different days', async () => {
-    vi.setSystemTime(new Date(2024, 0, 20, 8, 0, 0))
+	it('should be able to check in twice in different days', async () => {
+		vi.setSystemTime(new Date(2024, 0, 20, 8, 0, 0))
 
-    await sut.handle({
-      gymId: 'gym-01',
-      userId: 'user-01',
-      userLatitude: -26.8098821,
-      userLongitude: -49.2705003,
-    })
+		await sut.handle({
+			gymId: 'gym-01',
+			userId: 'user-01',
+			userLatitude: -26.8098821,
+			userLongitude: -49.2705003,
+		})
 
-    vi.setSystemTime(new Date(2024, 0, 21, 8, 0, 0))
+		vi.setSystemTime(new Date(2024, 0, 21, 8, 0, 0))
 
-    const { checkIn } = await sut.handle({
-      gymId: 'gym-01',
-      userId: 'user-01',
-      userLatitude: -26.8098821,
-      userLongitude: -49.2705003,
-    })
+		const { checkIn } = await sut.handle({
+			gymId: 'gym-01',
+			userId: 'user-01',
+			userLatitude: -26.8098821,
+			userLongitude: -49.2705003,
+		})
 
-    expect(checkIn.id).toEqual(expect.any(String))
-  })
+		expect(checkIn.id).toEqual(expect.any(String))
+	})
 
-  it('should not be able to check in on a distant gym', async () => {
-    await gymsRepository.create({
-      id: 'gym-02',
-      title: 'John Doe Gym',
-      latitude: -26.8214187,
-      longitude: -49.2754213,
-      description: null,
-      phone: null,
-    })
+	it('should not be able to check in on a distant gym', async () => {
+		await gymsRepository.create({
+			id: 'gym-02',
+			title: 'John Doe Gym',
+			latitude: -26.8214187,
+			longitude: -49.2754213,
+			description: null,
+			phone: null,
+		})
 
-    await expect(() => {
-      return sut.handle({
-        gymId: 'gym-02',
-        userId: 'user-01',
-        userLatitude: -26.8098821,
-        userLongitude: -49.2705003,
-      })
-    }).rejects.toBeInstanceOf(MaxDistanceError)
-  })
+		await expect(() => {
+			return sut.handle({
+				gymId: 'gym-02',
+				userId: 'user-01',
+				userLatitude: -26.8098821,
+				userLongitude: -49.2705003,
+			})
+		}).rejects.toBeInstanceOf(MaxDistanceError)
+	})
 })
