@@ -1,6 +1,5 @@
 import request from 'supertest'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
-import { object } from 'zod'
 
 import { app } from '@/app'
 
