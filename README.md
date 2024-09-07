@@ -32,6 +32,12 @@ I developed this project during my latest studies on Node lessons at [Rocketseat
 <!-- JWT -->
 <!-- RBAC: Role-Based Access Control -->
 
+<!-- CI/CD -->
+<!-- CI: Continuos integration -->
+<!-- CD: Continuos deployment/delivering -->
+
+<!-- GitHub Actions -->
+
 ## ⚙️ Get started
 ```zsh
 npm i
@@ -43,7 +49,6 @@ npx prisma migrate dev
 ```
 
 ## 🔗 Routes
-<!-- - Export and commit insomnia JSON, then, test it -->
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Ignite%20Node.js%3A%20GymPass%20API%0A&uri=https://raw.githubusercontent.com/rcrdk/gympass-api-nodejs-solid/main/insomnia.json)
 
 ## 📋 Business Rules and Requirements
