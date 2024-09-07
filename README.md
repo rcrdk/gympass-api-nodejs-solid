@@ -9,34 +9,13 @@ I developed this project during my latest studies on Node lessons at [Rocketseat
 - [Vitest](https://vitest.dev/)
 
 ## 🖥️ Project
-<!-- - Write about the project -->
-<!-- - Testing: E2E, Unit tests, In-Memory Databases, in this project we ensure that all application works by running all tests over testing with routing -->
-<!-- - Errors threatments -->
+This project was developed to practice the development of a API REST in Node.js with Fastify applying concepts as SOLID, design patterns (factory pattern, repositories pattern), clean architecture and TDD.
 
-<!-- - Clean Architecture -->
+To get started with the flow of the application, you can register a new user and authenticate, then, you can get the logged-in user profile; create a gym (only user with admin role can create one); search for gyms by name or by geo-location (check for functional requirements below for the rules); the user can check-in into a gym (check for business rules below to know about the rules); The user can get the history of check-ins and their metrics; The admin user can validate this check-in within 20 minutes.
 
-<!-- - SOLID: boas prática de código -->
-<!-- - S: Single Responsibility Principle: uma classe deve ter uma e apenas uma razão para mudar. -->
-<!-- - O: Open-Closed Principle: objetos devem estar disponíveis para extensão, mas fechados para modificação. -->
-<!-- - L: Liskov Substitution Principle: uma subclasse deve ser substituível por sua superclasse. -->
-<!-- - I: Interface Segregation Principle): uma classe não deve ser obrigada a implementar métodos e interfaces que não serão utilizadas. -->
-<!-- - D: Dependency Inversion Principle: dependa de abstrações e não de implementações. -->
+In this project we ensure that all application works by running all test over testing simply with routes on Insomnia. TDD (Test-Driven Development) concept was used in some tests situation, just for learning this method. It was applied unit tests to services layer and E2E test on controllers. It was used Vitest along with supertest to make requests. It was implemented GitHub Actions to run unit tests on push and E2E tests on pull requests. Prisma was used as ORM and client alongside with PostgreSQL database to mage with data.
 
-<!-- Design Patterns: -->
-<!-- - Repository Pattern: S,I e D do SOLID -->
-<!-- - Factory Pattern: É o padrão de design mais usado no mundo OOP porque economiza muito tempo no futuro quando você precisa modificar uma das classes que você usou. -->
-
-<!-- Metodologias de desenvolvimento: -->
-<!-- - TDD: Test-Driven Development -->
-
-<!-- JWT -->
-<!-- RBAC: Role-Based Access Control -->
-
-<!-- CI/CD -->
-<!-- CI: Continuos integration -->
-<!-- CD: Continuos deployment/delivering -->
-
-<!-- GitHub Actions -->
+To make the authentication it was used JWT (JSON Web Token) to persist user information with security into the application. It was applied RBAC (Role-Based Access Control) concept to assign roles to determinate kind of user.
 
 ## ⚙️ Get started
 ```zsh
