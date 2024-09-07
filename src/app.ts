@@ -8,6 +8,10 @@ import { checkInsRoutes } from './controllers/check-ins/routes'
 import { gymsRoutes } from './controllers/gyms/routes'
 import { usersRoutes } from './controllers/users/routes'
 import { env } from './env'
+import { LateCheckInValidationError } from './services/errors/late-check-in-validation-error'
+import { MaxDistanceError } from './services/errors/max-distance-error'
+import { MaxNumberOfCheckInsError } from './services/errors/max-number-of-check-ins-error'
+import { ResourceNotFoundError } from './services/errors/resource-not-found-error'
 
 export const app = fastify()
 
@@ -38,6 +42,22 @@ app.setErrorHandler((error, _, reply) => {
 		return reply
 			.status(400)
 			.send({ message: 'Validation error.', issues: error.format() })
+	}
+
+	if (error instanceof ResourceNotFoundError) {
+		return reply.status(404).send({ message: 'Resource not found.' })
+	}
+
+	if (error instanceof MaxDistanceError) {
+		return reply.status(404).send({ message: error.message })
+	}
+
+	if (error instanceof MaxNumberOfCheckInsError) {
+		return reply.status(404).send({ message: error.message })
+	}
+
+	if (error instanceof LateCheckInValidationError) {
+		return reply.status(404).send({ message: error.message })
 	}
 
 	if (env.NODE_ENV !== 'production') {
