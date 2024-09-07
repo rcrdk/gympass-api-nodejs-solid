@@ -43,11 +43,11 @@ describe('check-ins metricts (e2e)', () => {
 		})
 
 		const response = await request(app.server)
-			.get('/check-ins/history')
+			.get('/check-ins/metrics')
 			.set('Authorization', `Bearer ${token}`)
 			.send()
 
-		expect(response.statusCode).toEqual(200)
+		expect(response.statusCode).toEqual(201)
 		expect(response.body.checkInsCount).toEqual(2)
 	})
 })

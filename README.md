@@ -30,6 +30,7 @@ I developed this project during my latest studies on Node lessons at [Rocketseat
 <!-- - TDD: Test-Driven Development -->
 
 <!-- JWT -->
+<!-- RBAC: Role-Based Access Control -->
 
 ## ⚙️ Get started
 ```zsh
@@ -66,12 +67,12 @@ npx prisma migrate dev
 - [x] The user cannot make more than one check-in on the same day;
 - [x] The user cannot check-in if their not nearby the gym (around 100 meters);
 - [x] The check-in can only be validated till 20 minutes after created;
-- [ ] The check-in can only be validated by administrators;
-- [ ] The gym can only be created by administrators;
+- [x] The check-in can only be validated by administrators;
+- [x] The gym can only be created by administrators;
 
 ### Non Functional Requirements
 
 - [x] The user password must be encypted;
 - [x] All application data must be persisted on a postgreSQL database;
 - [x] All data listed should be paginated with 20 itens by page;
-- [ ] The user must be identified by a JWT (JSON Web Token);
+- [x] The user must be identified by a JWT (JSON Web Token);
