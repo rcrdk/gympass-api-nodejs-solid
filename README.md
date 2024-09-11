@@ -13,9 +13,9 @@ This project was developed to practice the development of a API REST in Node.js 
 
 To get started with the flow of the application, you can register a new user and authenticate, then, you can get the logged-in user profile; create a gym (only user with admin role can create one); search for gyms by name or by geo-location (check for functional requirements below for the rules); the user can check-in into a gym (check for business rules below to know about the rules); The user can get the history of check-ins and their metrics; The admin user can validate this check-in within 20 minutes.
 
-In this project we ensure that all application works by running all test over testing simply with routes on Insomnia. TDD (Test-Driven Development) concept was used in some tests situation, just for learning this method. It was applied unit tests to services layer and E2E test on controllers. It was used Vitest along with supertest to make requests. It was implemented GitHub Actions to run unit tests on push and E2E tests on pull requests. Prisma was used as ORM and client alongside with PostgreSQL database to mage with data.
+In this project it was ensured that all application works by running all test over testing simply with routes on Insomnia. TDD (Test-Driven Development) concept was used in some tests situation, just for learning this method. It was applied unit tests to services layer and E2E test on controllers. It was used Vitest along with supertest to make requests. 
 
-To make the authentication it was used JWT (JSON Web Token) to persist user information with security into the application. It was applied RBAC (Role-Based Access Control) concept to assign roles to determinate kind of user.
+It was implemented GitHub Actions to run unit tests on push and E2E tests on pull requests. Prisma was used as ORM and client alongside with PostgreSQL database to mage with data. To make the authentication it was used JWT (JSON Web Token) to persist user information with security into the application. It was applied RBAC (Role-Based Access Control) concept to assign roles to determinate kind of user.
 
 ## ⚙️ Get started
 ```zsh
